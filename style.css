@@ -4,7 +4,9 @@
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     background: #000000;
     color: #fff;
@@ -265,36 +267,7 @@ nav ul li a:hover::after{
     left: -15px;
 }
 
-@media screen and (max-width : 600px){
-    .timeline{
-        margin: 50px auto;
-    }
-    .timeline::after{
-        left: 31px;
-    }
-    .TimeLineContainer{
-        width: 100%;
-        padding-left: 80px;
-        padding-right: 25px;
-    }
-    .text-box{
-        font-size: 13px;
-    }
-    .text-box small{
-        margin-bottom: 10px;
-    }
-    .right-container{
-        left: 0;
-    }
-    .left-container img, .right-container img{
-        left: 10px;
-    }
-    .left-container-arrow, .right-container-arrow{
-        border-right: 15px solid #fff;
-        border-left: 0;
-        left: -15px;
-    }
-}
+
 
 
 /* ----------------------- portfolio --------------------*/
@@ -363,3 +336,191 @@ nav ul li a:hover::after{
     height: 100%;
 }
 
+/* ----------------------- Contact --------------------*/
+#contact{
+    padding-top: 50px 0;
+}
+.contact-left{
+    flex-basis: 35%;
+}
+.contact-right{
+    flex-basis: 60%;
+}
+.contact-left p{
+    margin-top: 30px;
+}
+.contact-left p i{
+    color: #ff004f;
+    margin-right: 15px;
+    font-size: 25px;
+}
+.social-icons{
+    margin-top: 30px;
+}
+.social-icons a{
+    text-decoration: none;
+    font-size: 30px;
+    margin-right: 15px;
+    color: #ababab;
+    display: inline-block;
+}
+.social-icons a:hover{
+    color: #ff004f;
+    transform: translateY(-5px);
+}
+
+.btn{
+    display: block;
+    margin: 30px auto;
+    width: fit-content;
+    border: 1px solid #ff004f;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.5s;
+}
+
+.btn:hover{
+    background: #ff004f;
+}
+
+.btn.btn2{
+    display: inline-block;
+    background-color: #ff004f;
+}
+
+.contact-right form{
+    width: 100%;
+}
+
+form input, form textarea{
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: #262626;
+    padding: 15px;
+    margin: 15px 0;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+form .btn2{
+    padding: 14px 60px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+/* ----------------------- Small size --------------------*/
+nav .fa-solid{
+    display: none;
+}
+
+@media screen and (max-width : 600px){
+    .timeline{
+        margin: 50px auto;
+    }
+    .timeline::after{
+        left: 31px;
+    }
+    .TimeLineContainer{
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 25px;
+    }
+    .text-box{
+        font-size: 13px;
+    }
+    .text-box small{
+        margin-bottom: 10px;
+    }
+    .right-container{
+        left: 0;
+    }
+    .left-container img, .right-container img{
+        left: 10px;
+    }
+    .left-container-arrow, .right-container-arrow{
+        border-right: 15px solid #fff;
+        border-left: 0;
+        left: -15px;
+    }
+
+    #header{
+        background-image: url(Image/BGsmall.png);
+    }
+    .header-text{
+        margin-top: 100%;
+        font-size: 16px;
+    }
+    .header-text h1{
+        font-size: 30px;
+    }
+    nav .fa-solid{
+        display: block;
+        font-size: 25px;
+        cursor: pointer;
+    }
+    nav ul{
+        background: #ff004f;
+        position: fixed;
+        top: 0;
+        right: -150px;
+        width: 150px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+    }
+    nav ul li{
+        display: block;
+        margin: 25px;
+    }
+    nav ul .fa-solid{
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+    nav ul li a::after{
+        background: #4779b5;
+    }
+
+    .subtitle{
+        font-size: 40px;
+    }
+    .about-col-1, .about-col-2{
+        flex-basis: 100%;
+    }
+
+    .about-col-1{
+        margin-bottom: 30px;
+    }
+    #about{
+        padding-bottom: 0px;
+    }
+    .about-col-2{
+        font-size: 14px;
+    }
+    .tab-links{
+        font-size: 16px;
+        margin-right: 20px;
+    }
+    .contact-left, .contact-right{
+        flex-basis: 100%;
+    }
+    .copyright{
+        font-size: 14px;
+    }
+}

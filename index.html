@@ -13,13 +13,15 @@
     <div class="container">
         <nav>
             <img src="Image/Logo.png" class="logo">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Road Map</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#RoadMap">Road Map</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
             </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
             <p>Game Dev / Data Analyst</p>
@@ -27,6 +29,17 @@
         </div>
     </div>
 </div>
+<script>
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemenu.style.right = "0";
+    }
+    function closemenu(){
+        sidemenu.style.right = "-150px";
+    }
+
+</script>
 <!--------------About Section---------------->
 <div id="about">
     <div class="container">
@@ -190,8 +203,35 @@
         </div>
     </div>
 </div>
-
-
+<!---------------------Contact-------------------------->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="subtitle">Contact Me</h1>
+                <p><a href="mailto:jbgidrol@hotmail.fr"><i class="fa-sharp fa-solid fa-paper-plane"></i></a> jbgidrol@hotmail.fr</p>
+                <p><a href="tel:+33698192570"><i class="fa-sharp fa-solid fa-phone"></i></a> +33698192570</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/jean-baptiste-gidrol-243878ab/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://noxyde.itch.io/" target="_blank"><i class="fa-brands fa-itch-io"></i></i></a>
+                    <a href="https://github.com/Noxfr69" target="_blank"><i class="fa-brands fa-square-github"></i></i></i></a>
+                </div>
+                <a href="Image/CV_Jean_Baptiste_Gidrol_JV.pdf" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form>
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p><i class="fa-regular fa-copyright"></i> Made by Jean-Baptiste to show that I know a bit of HTML/CSS/JS</p>
+    </div>
+</div>
 
 
 </body>
