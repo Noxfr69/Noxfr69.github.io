@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jb's Portfolio</title>
+    <link rel="icon" href="Image/Logo_neon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/70752368ba.js" crossorigin="anonymous"></script>
 </head>
@@ -12,7 +13,7 @@
 <div id="header">
     <div class="container">
         <nav>
-            <img src="Image/Logo.png" class="logo">
+            <img src="Image/Logo_neon.png" class="logo">
             <ul id="sidemenu">
                 <li><a href="#header">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -24,7 +25,7 @@
             <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
-            <p>Game Dev / Data Analyst</p>
+            <p>Data Scientist / MLOPS / Analyst</p>
             <h1>Hi this is <span>Jean-Baptiste</span><br> welcome to my Portfolio!</h1>
         </div>
     </div>
@@ -45,13 +46,16 @@
     <div class="container">
         <div class="row">
             <div class="about-col-1">
-                <img src="Image/PhototCVNoir.png">
+                <a href="https://jbgidrol.com/Image/CV_English.pdf" target="_blank">
+                    <img src="Image/PhototCVNoir.png">
+                </a>
             </div>
             <div class="about-col-2">
                 <h1 class="subtitle">About Me:</h1>
-                <p>Equipped with strong internationals experiences, used to high standards and expectations.
-                    Fast learner with a logical and creative mindset. Detail oriented and always performant in my work,
-                    I'm currently taking the opportunity to take on new challenges, eager to once again rise above the expectations of my peers.
+                <p>I always had an underlying desire to learn coding and found my entry point through game development. 
+                    This initial exposure, combined with my passion for problem-solving, numbers, and optimization, naturally led me to 
+                    data science. Immediately hooked, I found myself getting a Bachelor in data analysis and a Master's in Data Science in the following two years.
+                    I'm now ready and eager to tackle new challenges in the data science arena.
 
                 </p>
                 <div class="tab-titles">
@@ -61,50 +65,59 @@
                 </div>
                 <div class="tab-contents active-tab" id="skills">
                     <ul>
-                        <li><span>C# / Unity</span>
-                            <br>·Coding games with thousands of lines of codes
-                            <br>·NavMesh / tile palette / shaders / scriptable objects
-                            <br>·Implementing SOLID principals
-                            <br>·Good problem-solving while coding
+                        <li><span>Hard skills</span>
+                            <br>·Python 
+                            <br>·MLOPS
+                            <br>·Machine Learning / Deep Learning
+                            <br>·CI/CD
+                            <br>·Docker
+                            <br>·Spark
+                            <br>·BI
                         </li>
-                        <li><span>Python</span>
-                            <br>·numpy / pandas / matplotlib
-                            <br>·little experience with Keras and tensorflow
+                        <li><span>Soft skills</span>
+                            <br>·Excellent communication
+                            <br>·Problem Solving
+                            <br>·Teamwork and Collaboration
+                            <br>·Attention to Detail
+                            <br>·High adaptation and learning abilities
                         </li>
                         <li><span>Language</span>
                             <br>·Fluent French and English
                             <br>·Intermediate Chinese and Japanese
                         </li>
-                        <li><span>Interpersonal skills</span>
-                            <br>·Excellent communication
-                            <br>·Team Player
-                            <br>·High adaptation and learning abilities
-                        </li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="experience">
                     <ul>
-                        <li><span>11/2019-03/2022</span>
-                            <br><b>Shangri-La Paris</b> 
-                            <br>Head Waiter in the Michelin star restaurant of the hotel</li>
+                        <li><span>2019-2022</span>
+                            <br><b>Head waiter Shangri-La Paris</b> 
+                            <br>·Optimized operational workflows to enhance customer experience and improve team efficiency.
+                            <br>·Part of a high-performing team in a fast-paced, high-stakes environment, developing strong interpersonal and leadership skills.
+                            <br>·Utilized attention to detail to ensure perfection in every aspect of service, highlighting a keen eye for quality.</li>
                         <li><span>03/2017-08/2018</span>
                             <br><b>English Teacher in Beijing</b>
-                            <br>240 students each week
+                            <br>·Designed and executed lesson plans for 240 students weekly, requiring strong organizational and multitasking skills.
                         </li>
                         <li><span>09/2016-03/2017</span>
                             <br><b>凤凰卫视</b>
-                            <br>Video editor for the HongKongese television
+                            <br>·Video editor for the HongKongese television
                         </li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="education">
                     <ul>
-                        <li><span>since 03/2022</span><br>Self learning game development and data science</li>
-                        <li><span>2016-2018</span>
-                            <br>Intensive Chinese course at the Beijing language university
+                        
+                        <li><span>2023-2024</span>
+                            <br><b>Master's degree in Data Science</b>
+                            <br>OpenClassroom - CentraleSupélec
+                        </li>
+                        <li><span>2022-2023</span>
+                            <br><b>Bachelor's degree in Data analysis</b>
+                            <br>OpenClassroom - ENSAE
                         </li>
                         <li><span>2012-2015</span>
-                            <br><b>Bachelor degree</b><br>Video, sound, directing techniques with an internet convergence specialty
+                            <br><b>Bachelor's degree in Video Editing</b>
+                            <br>University of Rennes 2
                         </li>
                         <li><span>2007-2011</span>
                             <br>High school diploma in science
@@ -140,58 +153,59 @@
             <div class="TimeLineContainer left-container">
                 <img src="Image/unity_logo.png">
                 <div class="text-box">
-                    <h2>Unity with bolt</h2>
+                    <h2>First Game Created C#</h2>
                     <small>Feb 2022</small>
-                    <p>My first ever step with coding logic<br>Started from a bolt tutorial, the visual scripting solution that gave me my first understanding of coding</p>
+                    <p>Creating my first game "Slime Dynasty" a small Diablo-like H&S
                     <span class="left-container-arrow"></span>
                 </div>
             </div>
             <div class="TimeLineContainer right-container">
-                <img src="Image/unity_logo.png">
-                <div class="text-box">
-                    <h2>First Game Created C#</h2>
-                    <small>March 2022</small>
-                    <p>Quickly leaving bolt for written C# and never went back. Creating my first game "Slime Dynasty" a small Diablo-like H&S
-                    </p>
-                    <span class="right-container-arrow"></span>
-                </div>
-            </div>
-            <div class="TimeLineContainer left-container">
-                <img src="Image/unity_logo.png">
+                <img src="Image/game_jam.png">
                 <div class="text-box">
                     <h2>GameJam</h2>
                     <small>May 2022</small>
-                    <p>My first GameJam, finishing 43rd out of a 1000 entries with my card game Kraken's Adventure</p>
-                    <span class="left-container-arrow"></span>
-                </div>
-            </div>
-            <div class="TimeLineContainer right-container">
-                <img src="Image/GitHub-Mark.png">
-                <div class="text-box">
-                    <h2>Github</h2>
-                    <small>Jun 2022</small>
-                    <p>After creating my second game, I learned GitBash and Github. Version control, repository management, push and pull request
+                    <p>My first GameJam, finishing 43rd out of a 1000 entries with my card game Kraken's Adventure
                     </p>
                     <span class="right-container-arrow"></span>
                 </div>
             </div>
             <div class="TimeLineContainer left-container">
-                <img src="Image/kaggl_logo.jpg">
+                <img src="Image/data_logo.png">
                 <div class="text-box">
-                    <h2>Kaggle Python and SQL</h2>
-                    <small>Aug 2022</small>
-                    <p>Learning python and SQL through Kaggle's courses</p>
+                    <h2>Data Conference</h2>
+                    <small>June 2022</small>
+                    <p>Joined a data conference in Lyon that introduced me to the world of Data analysis</p>
                     <span class="left-container-arrow"></span>
                 </div>
             </div>
             <div class="TimeLineContainer right-container">
                 <img src="Image/openclassroom.png">
                 <div class="text-box">
-                    <h2>OpenClassroom</h2>
-                    <small>Sep 2022</small>
-                    <p>Courses on Python libraries numpy, panda, matplotlib
-                        <br>Probability and statistics course 
+                    <h2>Bachelor's in Data Analysis</h2>
+                    <small>Started Jully 2022</small>
+                    <p>The Data Analyst bachelor from OpenClassroom is carried out in partnership with ENSAE. 
+                        An elite engineering school that specializes in statistics and data science
                     </p>
+                    <span class="right-container-arrow"></span>
+                </div>
+            </div>
+            <div class="TimeLineContainer left-container">
+                <img src="Image/openclassroom.png">
+                <div class="text-box">
+                    <h2>Master's in Data Science</h2>
+                    <small>started June 2023</small>
+                    <p>The Data Science master from OpenClassroom is carried out in partnership with CentraleSupélec. 
+                        Another elite French engineering school.
+                    </p>
+                    <span class="left-container-arrow"></span>
+                </div>
+            </div>
+            <div class="TimeLineContainer right-container">
+                <img src="Image/paper_logo.png">
+                <div class="text-box">
+                    <h2>Authored my first paper</h2>
+                    <small>Sep 2023</small>
+                    <p>Conducted an in-depth analysis of contemporary techniques in text classification, with a focus on leveraging Large Language Models (LLMs)</p>
                     <span class="right-container-arrow"></span>
                 </div>
             </div>
@@ -199,10 +213,69 @@
     </div>
 </div>
 <!---------------------Portfolio-------------------------->
+
 <div id="portfolio">
     <div class="container">
-        <h1 class="subtitle">My work:</h1>
+        <h1 class="subtitle">Portfolio</h1>
+
+        <h2 class="subsection">My Data Science work:</h2>
         <div class="worklist">
+            <!-- Data Science works here -->
+            <div class="work">
+                <img src="Image/cadre2.jpg">
+                <div class="ds-title">Online Client Segmentation</div>
+                <div class="layer">
+                    <p>RFM analysis, ARI metrics, model update frequency, unsupervised algorithms, k-means, AHC, PCA.</p>
+                    <a href="https://github.com/Noxfr69/Olist_Client_Segmentation_Project" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Image/cadre2.jpg">
+                <div class="ds-title">Text & Image Classification</div>
+                <div class="layer">
+                    <p>Text algorithms, CNN and transfer learning, data augmentation. Authored a paper on Text classification with LLM</p>
+                    <div class="link-container">
+                        <a href="https://github.com/Noxfr69/Text_image_classification" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                        <a href="https://jbgidrol.com/paper/Text_classification_with_LLMs.pdf" target="_blank"><i class="fa-solid fa-book"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Image/cadre2.jpg">
+                <div class="ds-title">Energy Consumption Prediction</div>
+                <div class="layer">
+                    <p>Supervised learning, hyperparameter tuning with Optuna, feature engineering, SHAP.</p>
+                    <a href="https://github.com/Noxfr69/Energy_Consumption_Prediction" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Image/cadre2.jpg">
+                <div class="ds-title">Loan Scoring System</div>
+                <div class="layer">
+                    <p>Designed a loan scoring system with an MLflow pipeline, automated through CI/CD using GitHub Actions and Docker. Deployed the model as an API and created an associated dashboard using Dash.</p>
+                    <a href="https://github.com/Noxfr69/credit_scoring" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Image/cadre2.jpg">
+                <div class="ds-title">Big Data Processing on AWS Cloud</div>
+                <div class="layer">
+                    <p>Performed big data processing using AWS services such as EMR, EC2 clusters, Spark, and PySpark. Managed resources using AWS CLI and S3.</p>
+                    <a href="https://github.com/Noxfr69/BigData_Processing_AWS" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Image/cadre2.jpg">
+                <div class="ds-title">AI Project Framing</div>
+                <div class="layer">
+                    <p>Managed an AI project employing SCRUM and Agile methodologies, focusing on risk analysis and mitigation strategies.</p>
+                    <a href="https://jbgidrol.com/paper/GIDROL_JB_3_presentation_092023.pdf" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        <h2 class="subsection">My GameDev work:</h2>
+        <div class="worklist">
+            <!-- GameDev works here -->
             <div class="work">
                 <img src="Image/SlimeDynasty.jpg">
                 <div class="layer">
@@ -230,6 +303,7 @@
         </div>
     </div>
 </div>
+
 <!---------------------Contact-------------------------->
 <div id="contact">
     <div class="container">
@@ -243,14 +317,14 @@
                     <a href="https://noxyde.itch.io/" target="_blank"><i class="fa-brands fa-itch-io"></i></i></a>
                     <a href="https://github.com/Noxfr69" target="_blank"><i class="fa-brands fa-square-github"></i></i></i></a>
                 </div>
-                <a href="Image/CV_Jean_Baptiste_Gidrol_JV.pdf" download class="btn btn2">Download CV</a>
+                <a href="Image/CV_English.pdf" download class="btn btn2">Download CV</a>
             </div>
             <div class="contact-right">
-                <form>
-                    <input type="text" name="Name" placeholder="This is not working yet" required>
-                    <input type="email" name="email" placeholder="please send me an Email" required>
-                    <textarea name="Message" rows="6" placeholder="jbgidrol@hotmail.fr"></textarea>
-                    <button type="submit" class="btn btn2" >Submit</button>
+                <form action="https://formspree.io/f/mzblgkjd" method="POST">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="_replyto" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Send</button>
                 </form>
             </div>
         </div>
