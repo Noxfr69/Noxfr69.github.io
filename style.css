@@ -14,8 +14,10 @@ body{
 #header{
     width: 100%;
     height: 100vh;
-    background-image: url(Image/BG.png);
+    background-image: url(Image/BG2.png);
     background-size: cover;
+    max-width: 1920px;
+    margin: 0 auto;
     background-position: center;
 }
 .container{
@@ -472,7 +474,7 @@ nav .fa-solid{
     display: none;
 }
 
-@media screen and (max-width : 600px){
+@media screen and (max-width : 834px){
     .timeline{
         margin: 50px auto;
     }
@@ -502,11 +504,15 @@ nav .fa-solid{
         left: -15px;
     }
 
-    #header{
-        background-image: url(Image/BGsmall.png);
+   #header{
+    width: 100%;
+    height: 50vh;
+    background-image: none;
+    background-size: cover;
+    background-position: center;
     }
     .header-text{
-        margin-top: 100%;
+        margin-top: 10%;
         font-size: 16px;
     }
     .header-text h1{

@@ -18,14 +18,14 @@
                 <li><a href="#header">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#Portfolio">Portfolio</a></li>
-                <li><a href="#More projects">More projects</a></li>
+                <!-- <li><a href="#More projects">More projects</a></li> -->
                 <li><a href="#contact">Contact</a></li>
                 <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
             </ul>
             <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
-            <p>Data Engineer / Scientist / Developer</p>
+            <p>Freelance Data Engineer / Scientist / Developer</p>
             <h1>Hi this is <span>Jean-Baptiste</span><br> welcome to my Portfolio!</h1>
         </div>
     </div>
@@ -46,7 +46,7 @@
     <div class="container">
         <div class="row">
             <div class="about-col-1">
-                <a href="https://jbgidrol.com/Image/CV_English.pdf" target="_blank">
+                <a href="https://jbgidrol.com/Image/CV_english_2025.pdf" target="_blank">
                     <img src="Image/PhototCVNoir.png">
                 </a>
             </div>
@@ -66,16 +66,21 @@
                         <li><span>Hard skills</span>
                             <br>·Python 
                             <br>·Kafka
+                            <br>·GenAI
+                            <br>·Self-hosting of LLMs in production env
                             <br>·MLOPS
                             <br>·Machine Learning / Deep Learning
                             <br>·CI/CD
                             <br>·Kubernetes 
                             <br>·Docker
                             <br>·Spark
+                            <br>·RAG Systems
+                            <br>·REST API 
                         </li>
                         <li><span>Soft skills</span>
                             <br>·Excellent communication
                             <br>·Problem Solving
+                            <br>·Leading by example
                             <br>·Teamwork and Collaboration
                             <br>·Attention to Detail
                             <br>·High adaptation and learning abilities
@@ -89,11 +94,11 @@
                 <div class="tab-contents" id="experience">
                     <ul>
                         <li><span>03/2024-current</span>
-                            <br><b>Data Engineer, Scientist / Python Developer at RTBF</b>
+                            <br><b>Data Engineer, Scientist / GenAI Developer at RTBF</b>
                             <br>
-                            <br>· Delivering personalized recommendations to over 5 million users across media types including news articles, VOD, podcasts, and live TV, spanning two websites.
+                            <br>· Delivering personalized recommendations to over <b>5 million users</b> across media types including news articles, VOD, podcasts, and live TV, spanning two websites.
                             <br>
-                            <br>· Maintaining over 100 microservices within the recommendation architecture.
+                            <br>· Maintaining over <b>100 microservices</b> within the recommendation architecture.
                             <br>
                             <br>· Developed a uniform logging system for all recommendation APIs to support operational use and ensure compliance with EU/Belgian laws.
                             <br>
@@ -106,11 +111,13 @@
                         <li><span>01/2024-current</span>
                             <br><b>Data Engineer Consultant at Amaris</b>
                             <br>
-                            <br>· Joining the development of the internal Data Platform solution, creating the end-user config builder interface from scratch. Engineering a DAG solution for lineage querying and building intricate features like user query validation. 
+                            <br>· <b>Leading</b> the development of a <b>live pipeline</b> that generate video summary of sports live stream for BeinAsia.
                             <br>
-                            <br>· Participating in the creation of an easily deployable RAG, leveraging open source projects. 
+                            <br>· Joining the development of the internal <b>Data Platform</b> solution, creating the end-user config builder interface from scratch. Engineering a DAG solution for lineage querying and building intricate features like user query validation. 
                             <br>
-                            <br>· Building a GenAi augmented scrapper, to scrap data from targeted website and previous research on efficient prompting to perform batch evaluation and classification with LLM calls
+                            <br>· Participating in the creation of an easily deployable <b>RAG</b>, leveraging open source projects. 
+                            <br>
+                            <br>· Building a <b>GenAI augmented scrapper</b>, to scrap data from targeted website and previous research on efficient prompting to perform batch evaluation and classification with LLM calls
                         </li>
                         <li><span>07/2022-12/2023</span>
                             <br><b>Junior Data Engineer at Pragaz</b>
@@ -173,77 +180,90 @@
     <div class="container">
         <h1 class="subtitle">Key career projects :</h1>
         <div class="timeline">
+
+            <div class="TimeLineContainer left-container">
+                <img src="Image/logo-pragaz.png">
+                <div class="text-box">
+                    <h2>Full Data Lifecycle Pipeline</h2>
+                    <small>Jul 2022 - Dec 2023</small>
+                    <p>Led the design and deployment of a complete data lifecycle: from web scraping and ingestion to transformation, storage, and dashboard-based analytics—empowering business decisions at Pragaz.</p>
+                    <span class="left-container-arrow"></span>
+                </div>
+            </div>
+
+            <div class="TimeLineContainer right-container">
+                <img src="Image/logo-amaris.png">
+                <div class="text-box">
+                    <h2>Lakehouse Data Platform Accelerator</h2>
+                    <small>Jan 2024 - Mar 2024</small>
+                    <p>Helped build a Lakehouse data platform accelerator using Databricks and Azure stack, designing user-friendly configuration interfaces and DAG-based lineage querying.</p>
+                    <span class="right-container-arrow"></span>
+                </div>
+            </div>
+
             <div class="TimeLineContainer left-container">
                 <img src="Image/logo-amaris.png">
                 <div class="text-box">
-                    <h2>First Game Created C#</h2>
-                    <small>Feb 2022</small>
-                    <p>Creating my first game "Slime Dynasty" a small Diablo-like H&S
+                    <h2>GenAI Scraper and Email Alert</h2>
+                    <small>Mar 2024</small>
+                    <p>Created a GenAI-enhanced scraper to analyze websites, rank information by relevance, and email key insights to stakeholders automatically.</p>
                     <span class="left-container-arrow"></span>
                 </div>
             </div>
+
             <div class="TimeLineContainer right-container">
-                <img src="Image/logo-pragaz.png">
+                <img src="Image/logo-rtbf.jpg">
                 <div class="text-box">
-                    <h2>GameJam</h2>
-                    <small>May 2022</small>
-                    <p>My first GameJam, finishing 43rd out of a 1000 entries with my card game Kraken's Adventure
-                    </p>
+                    <h2>Video Content Enrichment Pipeline</h2>
+                    <small>Apr 2025 - May 2025</small>
+                    <p>Built a GenAI-powered pipeline for RTBF to enrich video content through transcription, summarization, and entity extraction using fully self-hosted LLMs.</p>
                     <span class="right-container-arrow"></span>
                 </div>
             </div>
+
             <div class="TimeLineContainer left-container">
                 <img src="Image/logo-rtbf.jpg">
                 <div class="text-box">
-                    <h2>Data Conference</h2>
-                    <small>June 2022</small>
-                    <p>Joined a data conference in Lyon that introduced me to the world of Data analysis</p>
+                    <h2>Scalable Personalized Recommendations</h2>
+                    <small>Jun 2025 - Dec 2025</small>
+                    <p>Engineered and scaled a metadata-driven recommendation system for auvio.be, generating and caching over 2 million daily recos for optimized frontend performance.</p>
                     <span class="left-container-arrow"></span>
                 </div>
             </div>
+
             <div class="TimeLineContainer right-container">
-                <img src="Image/openclassroom.png">
+                <img src="Image/logo-rtbf.jpg">
                 <div class="text-box">
-                    <h2>Bachelor's in Data Analysis</h2>
-                    <small>Started Jully 2022</small>
-                    <p>The Data Analyst bachelor from OpenClassroom is carried out in partnership with ENSAE. 
-                        An elite engineering school that specializes in statistics and data science
-                    </p>
+                    <h2>CMS-Integrated Tag Generation</h2>
+                    <small>Feb 2025</small>
+                    <p>Developed a CMS-integrated tagging solution using GenAI to help RTBF journalists assign accurate local labels to news articles based on content.</p>
                     <span class="right-container-arrow"></span>
                 </div>
             </div>
+
             <div class="TimeLineContainer left-container">
-                <img src="Image/openclassroom.png">
+                <img src="Image/logo-amaris.png">
                 <div class="text-box">
-                    <h2>Master's in Data Science</h2>
-                    <small>started June 2023</small>
-                    <p>The Data Science master from OpenClassroom is carried out in partnership with CentraleSupélec. 
-                        Another elite French engineering school.
-                    </p>
+                    <h2>Live Sport Stream Summarization R&D</h2>
+                    <small>Mar 2025</small>
+                    <p>Led R&D efforts for BeinAsia to summarize live sports streams in real time using GenAI, improving viewer engagement through digestible highlight reels.</p>
                     <span class="left-container-arrow"></span>
                 </div>
             </div>
-            <div class="TimeLineContainer right-container">
-                <img src="Image/paper_logo.png">
-                <div class="text-box">
-                    <h2>Authored my first paper</h2>
-                    <small>Sep 2023</small>
-                    <p>Conducted an in-depth analysis of contemporary techniques in text classification, with a focus on leveraging Large Language Models (LLMs)</p>
-                    <span class="right-container-arrow"></span>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
+
 <!---------------------Portfolio-------------------------->
 
-<div id="More projects">
+<!-- <div id="More projects">
     <div class="container">
         <h1 class="subtitle">More Data Science Projects :</h1>
 
-        <div class="worklist">
+        <div class="worklist"> -->
             <!-- Data Science works here -->
-            <div class="work">
+            <!-- <div class="work">
                 <img src="Image/cadre2.jpg">
                 <div class="ds-title">Online Client Segmentation</div>
                 <div class="layer">
@@ -304,9 +324,9 @@
             </div>
         </div>
         <h2 class="subsection">My GameDev work:</h2>
-        <div class="worklist">
+        <div class="worklist"> -->
             <!-- GameDev works here -->
-            <div class="work">
+            <!-- <div class="work">
                 <img src="Image/SlimeDynasty.jpg">
                 <div class="layer">
                     <h3>Slime Dynasty</h3>
@@ -332,7 +352,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!---------------------Contact-------------------------->
 <div id="contact">
