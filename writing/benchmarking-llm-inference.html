@@ -1,1 +1,111 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A practical guide to benchmarking LLM inference using production-shaped workloads and useful metrics."><title>Benchmark the workload, not the model — Jean-Baptiste Gidrol</title><link rel="icon" href="../Image/Logo_neon.png"><link rel="stylesheet" href="../style.css"><script src="../script.js" defer></script></head><body><header><a class="brand" href="../" aria-label="Jean-Baptiste Gidrol — home"><b>JB</b></a><button class="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav"><a href="../#services">Services</a><a href="../#work">Selected work</a><a href="../#about">About</a><a href="./">Writing</a><a class="nav-cta" href="../#contact">Start a conversation ↗</a></nav></header><main><article><section class="article-hero"><div class="meta"><span>Inference / Field note 001</span><time datetime="2026-09-29">September 29, 2026 · 8 min</time></div><h1>Benchmark the workload, not the model.</h1><p class="deck">A fast benchmark can still lead to a slow product. The test only becomes useful when it resembles the traffic, prompts and constraints your users will create.</p></section><div class="prose"><a class="back" href="./">← All field notes</a><p class="lead">Inference benchmarks are seductive because they turn a complicated system into a number. The danger is that the number is often answering a question nobody asked.</p><p>A model server that produces an impressive token count under synthetic load may still disappoint in production. Real traffic has uneven prompt lengths, bursts, cancellations, cacheable prefixes and several definitions of “fast.” Before comparing engines or GPU layouts, define the work the system must actually perform.</p><h2>Start with the user-visible promise</h2><p>Throughput matters for cost and capacity. It is rarely the only metric a user feels. An interactive assistant is shaped by time to first token. A batch summarization pipeline cares more about end-to-end completion and stable saturation. An agent can be dominated by repeated prefill and model reload behaviour.</p><p>I usually begin with four questions:</p><ul><li>What are the real input and output length distributions?</li><li>How many requests arrive concurrently, and how bursty are they?</li><li>Which latency percentile defines an acceptable experience?</li><li>What happens when the service is saturated or a replica is cold?</li></ul><blockquote>A benchmark is a small model of your production system. If the model is wrong, extra decimal places do not make it useful.</blockquote><h2>Measure a curve, not a winner</h2><p>A single concurrency level hides the most valuable information: where the system bends. Run a sweep from light traffic through saturation. Record aggregate output throughput, per-user generation speed, time to first token and errors at every point.</p><p>As concurrency rises, total throughput generally improves until the server reaches a ceiling. Meanwhile, each user may wait longer. The best operating point is not necessarily maximum throughput—it is the highest load that still respects your service promise.</p><div class="callout"><p><strong>Practical baseline:</strong> report median and p95 time to first token, inter-token latency, request completion time, output tokens per second, and error rate. Include the exact input/output distribution and concurrency beside every result.</p></div><h2>Cold, warm and cached are different systems</h2><p>Compilation, model loading and prefix caching can change a result by orders of magnitude. Label them explicitly. A platform operator needs to understand cold-start recovery; a steady-state capacity test needs warmed replicas; an agentic workflow may deserve its own cache-aware scenario.</p><p>Do not let an accidental cache hit become a performance claim. Conversely, do not disable caching when production contains long, repeated system prompts. Test both, because both are real.</p><h2>Control the variables that quietly move</h2><p>Performance changes with model revision, quantization, tensor parallelism, engine version, CUDA stack, attention backend and sampling configuration. Keep a machine-readable record of the environment with every run.</p><p>This turns benchmarking from a one-off contest into an engineering feedback loop. It also makes upgrades safer: compare a new engine or release against the same production-shaped suite before traffic moves.</p><h2>The useful result is a decision</h2><p>The deliverable should not be a leaderboard. It should say which layout to deploy, the expected capacity, the latency envelope, the fallback, and the signals that indicate it is time to scale or revisit the choice.</p><p>That is the difference between measuring a model and engineering an inference service.</p></div></article></main><section class="contact"><p class="kicker">Need to benchmark a real workload?</p><h2>Let’s make it<br><em>measurable.</em></h2><a class="button light" href="mailto:jbgidrol@hotmail.fr?subject=Inference%20benchmarking">Discuss your system ↗</a></section><footer><span>© <span id="year">2026</span> Jean-Baptiste Gidrol</span><a href="../">Back home →</a></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Why theoretical LLM inference benchmarks are only the baseline—and how prefix-aware routing and a warm KV cache keep agentic TTFT below one second.">
+  <title>The benchmark said one second. Production said ninety. — Jean-Baptiste Gidrol</title>
+  <link rel="icon" href="../Image/Logo_neon.png">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../script.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="../" aria-label="Jean-Baptiste Gidrol — home"><b>JB</b></a><button class="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav"><a href="../#services">Services</a><a href="../#work">Selected work</a><a href="../#about">About</a><a href="./">Writing</a><a class="nav-cta" href="../#contact">Start a conversation ↗</a></nav></header>
+  <main>
+    <article>
+      <section class="article-hero">
+        <div class="meta"><span>Inference / Field note 001</span><time datetime="2026-09-29">September 29, 2026 · 8 min</time></div>
+        <h1>The benchmark said one second. Production said ninety.</h1>
+        <p class="deck">What theoretical load tests reveal, what they hide, and why cache-aware routing can matter more to an agent’s time to first token than another round of kernel tuning.</p>
+      </section>
+      <div class="prose">
+        <a class="back" href="./">← All field notes</a>
+        <p class="lead">On paper, the inference service was fast. Under a controlled high-concurrency workload it delivered almost 5,000 output tokens per second, with p95 time to first token around one second. Then a real agentic request arrived and waited a minute and a half before producing anything.</p>
+        <p>Both measurements were correct.</p>
+        <p>They described two different systems: one exercised a repeatable theoretical workload against a warm, measurable endpoint; the other crossed a multi-replica production platform with long shared prompts, changing conversation state and no guarantee that the next turn would reach a replica holding the useful prefix in its KV cache.</p>
+        <p>This is why I treat an inference benchmark as the beginning of capacity engineering, not the end. It establishes what the model and serving stack can do. Production traffic tells you whether the rest of the platform lets them keep doing it.</p>
+
+        <div class="article-stats" aria-label="Observed performance contrast">
+          <div><strong>4,972.6</strong><span>output tok/s<br>synthetic, concurrency 75</span></div>
+          <div><strong>~90 s</strong><span>cold agentic turn<br>observed TTFT</span></div>
+          <div><strong>&lt;1 s</strong><span>warm, efficiently routed<br>agentic TTFT</span></div>
+        </div>
+
+        <h2>First, build a benchmark you can repeat</h2>
+        <p>I use two complementary harnesses. GuideLLM drives OpenAI-compatible endpoints from outside the cluster, which includes the gateway and serving path an application actually reaches. <code>vllm bench serve</code> runs closer to the workers and gives a useful token-shaped view of the inference engine itself.</p>
+        <p>The suite does not produce one magic score. It runs several prompt shapes across a concurrency sweep:</p>
+        <ul>
+          <li><strong>Short synthetic prompts</strong> expose decode capacity and the point where throughput begins to flatten.</li>
+          <li><strong>Article-shaped requests</strong> use roughly 8,192 input and 1,536 output tokens to apply real prefill pressure.</li>
+          <li><strong>Tool-call workloads</strong> use shorter 512/128 shapes to approximate frequent agent turns.</li>
+          <li><strong>Pod-side random-token runs</strong> provide a second measurement path, useful for spotting gateway or client-side effects.</li>
+        </ul>
+        <p>Every run records the deployment shape, model, serving version, GPU layout, concurrency, prompt distribution and errors. Interrupted suites can resume without silently mixing results, and every configuration change gets a new run directory. That bookkeeping is not glamorous, but without it an optimization result is just an anecdote.</p>
+
+        <h2>Throughput and responsiveness are different questions</h2>
+        <p>One representative Qwen 3.6 FP8 run used a single H100 replica with a compiled graph and FlashInfer. The short synthetic workload reached 4,972.6 output tokens per second at concurrency 75, with p95 TTFT at 1,021.7 milliseconds and no errors across 1,050 requests.</p>
+        <p>The same deployment behaved differently when the prompt shape changed:</p>
+        <div class="table-wrap"><table><thead><tr><th>Workload</th><th>Concurrency</th><th>Output tok/s</th><th>TTFT</th><th>Errors</th></tr></thead><tbody><tr><td>Short synthetic</td><td>75</td><td>4,972.6</td><td>p95 1.02 s</td><td>0 / 1,050</td></tr><tr><td>Article, 8k / 1.5k</td><td>50</td><td>4,009.7</td><td>p95 2.05 s</td><td>0 / 150</td></tr><tr><td>Tool call, 512 / 128</td><td>32</td><td>2,474.0</td><td>p95 1.83 s</td><td>0 / 404</td></tr><tr><td>vLLM random, 8k / 1.5k</td><td>32</td><td>3,071.2</td><td>p99 2.25 s</td><td>0 / 264</td></tr></tbody></table></div>
+        <p>None of these rows is “the speed of the model.” Each is a point on a response surface. A deployment can maximize aggregate throughput while making each user wait longer. A layout that wins on short prompts can lose on long prefill. A change that improves mean latency can make the tail worse.</p>
+        <blockquote>The benchmark is useful when it leads to an operating envelope—not when it produces the largest number.</blockquote>
+
+        <h2>Theoretical workloads deliberately simplify reality</h2>
+        <p>A controlled benchmark has to freeze variables. That is its strength. It is also the reason it cannot reproduce every production failure mode.</p>
+        <p>Real agentic traffic is path-dependent. Each turn may repeat a large system prompt, tool definitions, policies, retrieved context and most of the conversation. The stable prefix can be far larger than the new user message. Requests arrive irregularly. Agents pause while tools run. Deployments have multiple replicas. Caches fill, fragment and evict.</p>
+        <p>Some synthetic datasets are intentionally cache-friendly and decode-focused. For a colder prefill test, I vary the dossier content and move unique material earlier in the prompt so requests share less reusable prefix. Both tests are useful, but they answer different questions:</p>
+        <ul>
+          <li>A cache-friendly test asks how efficiently the platform serves repeated structure.</li>
+          <li>A cache-hostile test asks what happens when the engine must process most of the prompt again.</li>
+          <li>A production trace asks whether the router preserves the reuse opportunity that the application naturally creates.</li>
+        </ul>
+
+        <h2>Why the KV cache changes TTFT so dramatically</h2>
+        <p>During prefill, the model processes every input token and computes the attention keys and values needed for generation. Those tensors form the KV cache. If a later request begins with exactly the same token sequence and prefix caching is enabled, the engine can reuse cached blocks instead of recomputing that prefix.</p>
+        <p>That is unusually valuable for agents. Their prompts often contain thousands of stable tokens: the same system instructions, the same tool schemas, and the conversation accumulated so far. A new turn may add only a small suffix. With a cache hit, the engine mostly processes that suffix. Without one, it may prefill the entire history again.</p>
+
+        <figure class="article-figure">
+          <img src="../Image/GPU_KV_cache_hit.png" alt="GPU KV cache hit monitoring during production inference" width="1200" height="516">
+          <figcaption>Production cache-hit behaviour makes the gap visible: high reuse keeps repeated agent prefixes off the expensive prefill path.</figcaption>
+        </figure>
+
+        <p>In the production workload behind this chart, an empty or missed cache could push an agentic turn to roughly 90 seconds before the first token appeared. Keeping the relevant prefix warm—and routing the next turn to the replica that owns it—brought TTFT below one second.</p>
+        <p>That is not a small optimization. It is the difference between an agent that feels broken and one that feels interactive.</p>
+
+        <h2>Enabling prefix caching is necessary, but not sufficient</h2>
+        <p>A multi-replica deployment does not have one magical shared KV cache. Cache state is local to an engine instance. If successive turns are spread evenly across replicas without considering their prefixes, each replica sees a cold request and performs the same expensive prefill.</p>
+        <p>The platform therefore needs prefix-aware routing. At a high level, that means deriving a stable identity for the reusable prefix, tracking which replica is likely to hold it, and preferring that replica while it remains healthy and has capacity. The routing policy still needs an escape hatch: cache affinity must not send all hot traffic to an overloaded worker.</p>
+        <p>Prompt construction matters just as much. Prefix reuse requires token-level agreement from the beginning of the request. A timestamp, random identifier or differently ordered tool list near the top can invalidate the reusable prefix even when the prompts look semantically identical.</p>
+        <div class="callout"><p><strong>The practical rule:</strong> put stable content first, changing content last, keep tool and policy serialization deterministic, and route related turns with cache locality in mind.</p></div>
+
+        <h2>What I monitor in production</h2>
+        <p>Average latency cannot explain this class of problem. I want the signals that separate decode pressure, queueing and lost prefix reuse:</p>
+        <ul>
+          <li>TTFT percentiles per model, replica and workload class;</li>
+          <li>prefix/KV-cache hit rate and cache occupancy;</li>
+          <li>prompt tokens computed versus prompt tokens served;</li>
+          <li>request queue depth, preemption and eviction signals;</li>
+          <li>routing decisions and replica-level load;</li>
+          <li>inter-token latency, which shows whether generation itself is slow;</li>
+          <li>cold-start and post-deployment behaviour.</li>
+        </ul>
+        <p>If TTFT spikes while inter-token latency remains normal, the problem is probably before decode: queueing, cold compilation, a long uncached prefill, or routing to the wrong replica. That narrows the investigation far more effectively than staring at aggregate GPU utilization.</p>
+
+        <h2>A benchmark should become a capacity decision</h2>
+        <p>The test suite still matters. It tells me where throughput saturates, how TP1 and TP2 layouts trade scheduling against per-token speed, whether a new CUDA or vLLM version regresses, and whether a speculative decoding technique remains stable under long load. It provides the repeatable baseline needed to make changes safely.</p>
+        <p>But the final deliverable is not a leaderboard. It is a set of production decisions:</p>
+        <ul>
+          <li>the replica and tensor-parallel layout for each workload;</li>
+          <li>the maximum concurrency that respects the TTFT objective;</li>
+          <li>the warm-up and deployment strategy;</li>
+          <li>the prefix-aware routing policy and its overload fallback;</li>
+          <li>the prompt conventions application teams must preserve;</li>
+          <li>the dashboards and alerts that reveal lost cache locality.</li>
+        </ul>
+        <p>A theoretical benchmark tells you the engine is capable of a one-second first token. Production engineering is everything required to make that promise survive the next agent turn.</p>
+      </div>
+    </article>
+  </main>
+  <section class="contact"><p class="kicker">Is your production latency hiding behind a good benchmark?</p><h2>Let’s make it<br><em>observable.</em></h2><a class="button light" href="mailto:jbgidrol@hotmail.fr?subject=Inference%20performance%20review">Discuss your system ↗</a></section>
+  <footer><span>© <span id="year">2026</span> Jean-Baptiste Gidrol</span><a href="../">Back home →</a></footer>
+</body>
+</html>
